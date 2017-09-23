@@ -16,6 +16,11 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var server = http.createServer(app);
-var ejs = require('ejs');
+server.listen(80,function(){
+    console.log('CDN on Port 80');
+});
 app.enable('trust proxy');
 app.use('/',express.static(__dirname + '/files'));
+app.get('/', function (req,res){
+    res.sendFile(__dirname+'/index.html');
+});
